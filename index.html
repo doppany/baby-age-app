@@ -13,41 +13,70 @@
     }
     .card {
       background: #fff;
-      padding: 20px;
-      border-radius: 16px;
+      padding: 24px 20px;
+      border-radius: 24px;
       max-width: 520px;
-      margin: 40px auto;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    }
-    h2 { margin-top: 0; }
-    input, button {
       width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      font-size: 16px;
-      border-radius: 12px;
-      border: 1px solid #ddd;
+      margin: 24px auto;
+      box-sizing: border-box;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     }
-    button {
-      background: #111827;
-      color: white;
-      border: none;
-      font-weight: 700;
+    h2 {
+      margin-top: 0;
+      margin-bottom: 18px;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+    input {
+      width: 100%;
+      display: block;
+      padding: 16px 18px;
+      margin-top: 10px;
+      font-size: 18px;
+      border-radius: 18px;
+      border: 1.5px solid #e5e7eb;
+      background: #ffffff;
+      color: #111827;
+      box-sizing: border-box;
+      appearance: none;
+      -webkit-appearance: none;
+      box-shadow: 0 2px 8px rgba(17,24,39,0.04);
+    }
+    input:focus {
+      outline: none;
+      border-color: #cbd5e1;
+      box-shadow: 0 0 0 4px rgba(148,163,184,0.12);
     }
     .result {
-      margin-top: 20px;
+      margin-top: 28px;
       font-size: 20px;
       font-weight: 700;
-      line-height: 1.8;
+      line-height: 1.9;
+    }
+    @media (max-width: 480px) {
+      body {
+        padding: 16px;
+      }
+      .card {
+        margin: 16px auto;
+        padding: 22px 18px;
+        border-radius: 22px;
+      }
+      h2 {
+        font-size: 26px;
+      }
+      input {
+        font-size: 17px;
+        padding: 15px 16px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h2>아기 나이 계산기👼🏻</h2>
+    <h2>아기 나이 계산기 👼🏻</h2>
 
     <input type="date" id="birth" value="2026-02-04">
-    
 
     <div class="result" id="result"></div>
   </div>
