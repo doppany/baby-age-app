@@ -47,7 +47,7 @@
     <h2>아기 나이 계산기</h2>
 
     <input type="date" id="birth" value="2026-02-04">
-    <button onclick="calc()">계산하기</button>
+    <button type="button" id="calcBtn">계산하기</button>
 
     <div class="result" id="result"></div>
   </div>
@@ -74,6 +74,51 @@ function calc(){
   const result = document.getElementById('result');
 
   if (!birthValue) {
-    result.innerHTML = '
+    result.innerHTML = '출생일을 입력해주세요.';
+    return;
+  }
+
+  const birth = new Date(birthValue);
+  const today = new Date();
+
+  if (startOfDay(birth) > startOfDay(today)) {
+    result.innerHTML = '출생일이 오늘보다 미래일 수는 없어요.';
+    return;
+  }
+
+  const totalDays = daysBetween(birth, today);
+
+  const weeks = Math.floor(totalDays / 7);
+  const weekDays = totalDays % 7;
+  const weekLabel = weeks + '주차';
+
+  let months = (today.getFullYear() - birth.getFullYear()) * 12
+             + (today.getMonth() - birth.getMonth());
+
+  let anchor = addMonths(birth, months);
+  if (startOfDay(anchor) > startOfDay(today)){
+    months--;
+    anchor = addMonths(birth, months);
+  }
+
+  const monthDays = daysBetween(anchor, today);
+
+  localStorage.setItem('babyBirthDate', birthValue);
+
+  result.innerHTML =
+    `생후 ${totalDays}일<br>
+     ${weeks}주 ${weekDays}일 (${weekLabel})<br>
+     ${months}개월 ${monthDays}일`;
+}
+
+const savedBirthDate = localStorage.getItem('babyBirthDate');
+if (savedBirthDate) {
+  document.getElementById('birth').value = savedBirthDate;
+}
+
+document.getElementById('birth').addEventListener('change', calc);
+document.getElementById('calcBtn').addEventListener('click', calc);
+calc();
+</script>
 </body>
 </html>
