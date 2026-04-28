@@ -70,32 +70,10 @@ function addMonths(date, months){
 }
 
 function calc(){
-  const birth = new Date(document.getElementById('birth').value);
-  const today = new Date();
+  const birthValue = document.getElementById('birth').value;
+  const result = document.getElementById('result');
 
-  const totalDays = daysBetween(birth, today);
-
-  const weeks = Math.floor(totalDays / 7);
-  const weekDays = totalDays % 7;
-
-  let months = (today.getFullYear() - birth.getFullYear()) * 12
-             + (today.getMonth() - birth.getMonth());
-
-  let anchor = addMonths(birth, months);
-  if (startOfDay(anchor) > startOfDay(today)){
-    months--;
-    anchor = addMonths(birth, months);
-  }
-
-  const monthDays = daysBetween(anchor, today);
-
-  document.getElementById('result').innerHTML =
-    `생후 ${totalDays}일<br>
-     ${weeks}주 ${weekDays}일<br>
-     ${months}개월 ${monthDays}일`;
-}
-
-calc();
-</script>
+  if (!birthValue) {
+    result.innerHTML = '
 </body>
 </html>
